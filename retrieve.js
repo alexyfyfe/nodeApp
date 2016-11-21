@@ -17,7 +17,7 @@ http.createServer(function(request, response) {
         // Get the documents collection
         var collection = db.collection('users');
         //We have a cursor now with our find criteria
-        var results = collection.find({name: 'modulus user'});
+        var results = collection.find({name: 'modulus admin'});
         //Lets iterate on the result
         results.each(function (err, result) {
             //if the result is null, there are no more results, it’s ok to close everything
