@@ -13,13 +13,15 @@ http.createServer(function(request, response) {
     response.writeHead(200, { 'Content-Type': 'text/plain' });
     response.write('Connecting \n');
     // Get the documents collection
-    var collection = db.collection('users');
-    var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
-    var user2 = {name: 'modulus user', age: 22, roles: ['user']};
-    var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
+
     // Insert some users
     MongoClient.connect(url, function (err, db) {
         response.write('Connection Made \n');
+        var collection = db.collection('users');
+
+        var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
+        var user2 = {name: 'modulus user', age: 22, roles: ['user']};
+        var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
         collection.insert([user1, user2, user3], function (err, result) {
             if (err) {
                 response.write('Insert failed ' + err + "\n");
@@ -35,4 +37,3 @@ http.createServer(function(request, response) {
     });
 
 }).listen(port);
-       
